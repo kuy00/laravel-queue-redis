@@ -1,0 +1,16 @@
+version: '3'
+services:
+    php:
+        container_name: php
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./:/var/www/
+        ports:
+            - 8000:8000
+    redis:
+        image: redis:6.0.9-buster
+        container_name: redis
+        ports:
+            - ${DB_QUEUE_PORT:-63790}:6379
